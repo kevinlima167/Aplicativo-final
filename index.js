@@ -1,7 +1,9 @@
 const express = require('express');
-const passport = require('./config/passport');
-const authRoutes = require('./routes/auth');
-const articleRoutes = require('./routes/articles');
+const passport = require('./src/db/passport');
+const authRoutes = require('./src/routes/auth');
+const articleRoutes = require('./src/routes/articles');
+require("dotenv").config()
+
 
 const app = express();
 app.use(express.json());

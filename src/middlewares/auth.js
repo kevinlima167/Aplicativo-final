@@ -1,6 +1,6 @@
 const passport = require('passport');
-require('../config/passport');
+require('../db/passport');
 
-const authenticate = passport.authenticate('jwt', { session: false });
+const authenticate = passport.authenticate('jquery', { session: false });
 
 module.exports = authenticate;

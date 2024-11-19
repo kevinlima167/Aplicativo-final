@@ -1,4 +1,4 @@
-const pool = require('../config/db.js');
+const pool = require('../db/db.js');
 
 async function validateArticleContent(req, res, next) {
   const { title, content } = req.body;
