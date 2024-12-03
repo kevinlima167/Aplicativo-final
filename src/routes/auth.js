@@ -11,7 +11,7 @@ router.post('/register', validateInput, async (req, res) => {
 
     try {
         // Verificar se o username já existe
-        const userExists = await pool.query('SELECT usuario_id FROM usuario WHERE user_name = $1', [username]);
+        const userExists = await pool.query('SELECT usuario_ID FROM usuario WHERE user_name = $1', [username]);
         if (userExists.rows.length > 0) {
             return res.status(409).json({ message: 'Username já está em uso.' });
         }
@@ -21,7 +21,7 @@ router.post('/register', validateInput, async (req, res) => {
         console.log(hashedPassword)
         // Inserir no banco de dados
         const result = await pool.query(
-            'INSERT INTO usuario (user_name, password) VALUES ($1, $2) RETURNING usuario_id, user_name',
+            'INSERT INTO usuario (user_name, password) VALUES ($1, $2) RETURNING usuario_ID, user_name',
             [username, hashedPassword]
         );
 
@@ -38,7 +38,7 @@ router.post('/login', validateInput, async (req, res) => {
 
     try {
         // Buscar usuário no banco de dados
-        const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        const result = await pool.query('SELECT * FROM usuario WHERE user_name = $1', [username]);
         const user = result.rows[0];
 
         if (user && (await bcrypt.compare(password, user.password))) {

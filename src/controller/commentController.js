@@ -7,7 +7,7 @@ const commentController = {
 
     try {
       const result = await pool.query(
-        'INSERT INTO comments (content, author_id, article_id) VALUES ($1, $2, $3) RETURNING *',
+        'INSERT INTO comments (content, usuario_ID, artigo_ID) VALUES ($1, $2, $3) RETURNING *',
         [content, authorId, articleId]
       )
 

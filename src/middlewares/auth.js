@@ -10,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await pool.query('SELECT * FROM usuario WHERE usuario_id = $1', [decoded.id]);
+        const user = await pool.query('SELECT * FROM usuario WHERE usuario_ID = $1', [decoded.id]);
 
         if (user.rows.length === 0) {
             throw new Error();

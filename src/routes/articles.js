@@ -21,7 +21,7 @@ router.post('/articles/create', authenticate, validateArticleContent, async (req
 
   try {
     await pool.query(
-      'INSERT INTO articles (title, content, author_id) VALUES ($1, $2, $3) RETURNING *',
+      'INSERT INTO articles (titulo_name, conteudo,data_criacao, author_ID) VALUES ($1, $2, $3) RETURNING *',
       [title, content, authorId]
     );
     res.status(201).json({ message: 'Artigo criado com sucesso.' });
@@ -37,7 +37,7 @@ router.put('/articles/:id/edit', authenticate, isAuthor, validateArticleContent,
 
   try {
     await pool.query(
-      'UPDATE articles SET title = $1, content = $2 WHERE id = $3 RETURNING *',
+      'UPDATE articles SET titulo_name = $1, conteudo = $2,data_criacao = $3 WHERE artigo_ID = $4 RETURNING *',
       [title, content, id]
     );
     res.json({ message: 'Artigo atualizado com sucesso.' });
@@ -51,7 +51,7 @@ router.delete('/articles/:id/delete', authenticate, isAuthor, async (req, res) =
   const { id } = req.params;
 
   try {
-    await pool.query('DELETE FROM articles WHERE id = $1', [id]);
+    await pool.query('DELETE FROM articles WHERE artigo_ID = $1', [id]);
     res.json({ message: 'Artigo excluído com sucesso.' });
   } catch (error) {
     res.status(500).json({ message: 'Erro ao excluir artigo.' });
