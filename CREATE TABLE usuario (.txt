@@ -1,4 +1,3 @@
-# Aplicativo-final
 CREATE TABLE usuario (
 	usuario_ID SERIAL PRIMARY KEY,
 	user_name VARCHAR (255) NOT NULL, 

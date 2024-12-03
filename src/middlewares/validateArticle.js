@@ -1,4 +1,4 @@
-const pool = require('../config/db.js');
+const pool = require('../db/db.js');
 
 async function validateArticleContent(req, res, next) {
   const { title, content } = req.body;
@@ -16,7 +16,7 @@ async function isAuthor(req, res, next) {
   const userId = req.user.id;
 
   try {
-    const { rows } = await pool.query('SELECT * FROM articles WHERE id = $1', [id]);
+    const { rows } = await pool.query('SELECT * FROM articles WHERE artigo_ID = $1', [id]);
     const article = rows[0];
 
     if (!article) {
